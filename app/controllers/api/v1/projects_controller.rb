@@ -19,9 +19,18 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def update
+    @project = Project.find(params[:id])
+    if @project.update(project_params)
+      render json: @project
+    else
+      render json: @project.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+    render json: {}, status: :no_content
   end
 
   private
