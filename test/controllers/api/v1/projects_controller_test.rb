@@ -19,6 +19,7 @@ class Api::V1::ProjectsControllerTest < ActionDispatch::IntegrationTest
     response = JSON.parse(@response.body)
     assert_equal @project1.title, response["title"]
     assert_equal @project1.description, response["description"]
+    assert_equal @project1.user_id, response["user_id"]
   end
 
   test "should get create" do
