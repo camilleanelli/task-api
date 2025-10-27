@@ -10,11 +10,23 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def create
+    @project = Project.new(project_params)
+    if @project.save
+      render json: @project
+    else
+     render json: @project.errors, status: :unprocessable_entity
+    end
   end
 
   def update
   end
 
   def destroy
+  end
+
+  private
+
+  def project_params
+    params.require(:project).permit(:title, :description, :user_id)
   end
 end

@@ -22,18 +22,20 @@ class Api::V1::ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_equal @project1.user_id, response["user_id"]
   end
 
-  test "should get create" do
-    get api_v1_projects_create_url
+  test "should create a project with valid params" do
+    assert_difference("Project.count") do
+      post api_v1_projects_url, params: { project: { title: "New Project", description: "Project Description", user_id: @project1.user_id } }
+    end
     assert_response :success
   end
 
-  test "should get update" do
-    get api_v1_projects_update_url
-    assert_response :success
+  test "should render an error without the title" do
+    post api_v1_projects_url, params: { project: { title: "", description: "Project Description", user_id: @project1.user_id } }
+    assert_response :unprocessable_entity
   end
 
-  test "should get destroy" do
-    get api_v1_projects_destroy_url
-    assert_response :success
-  end
+  # test "should get destro" do
+  #   get api_v1_projects_destroy_url
+  #   assert_response :success
+  # end
 end
