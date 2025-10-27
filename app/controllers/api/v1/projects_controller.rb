@@ -29,6 +29,7 @@ class Api::V1::ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
+    # todo if current_user != @project.owner.user to make sure only owner can delete
     @project.destroy
     render json: {}, status: :no_content
   end
@@ -36,6 +37,6 @@ class Api::V1::ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :description, :user_id)
+    params.require(:project).permit(:title, :description, :owner_id)
   end
 end

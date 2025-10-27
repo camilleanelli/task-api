@@ -3,9 +3,9 @@
 project_one:
   title: Halloween App
   description: lorem ipsum dolor sit amet
-  user: one
+  owner: owner_one
 
 project_two:
   title: Christmas App
   description: lorem ipsum dolor sit amet
-  user: two
+  owner: owner_two

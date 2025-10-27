@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  has_many :projects, dependent: :destroy
+  has_many :owned_projects, through: :owner, source: :projects
+  has_one :owner
+
 
   validates :name, presence: true
   validates :last_name, presence: true
