@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
+  title: refactor codebase
   description: MyString
+  project: project_one
   status: 1
 
 two:
-  title: MyString
+  title: change database schema
   description: MyString
-  status: 1
+  project: project_one
+  status: 2
