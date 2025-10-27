@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+project_one:
+  title: Halloween App
+  description: lorem ipsum dolor sit amet
+
+project_two:
+  title: Christmas App
+  description: lorem ipsum dolor sit amet
