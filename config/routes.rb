@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :projects, only: [ :index, :show, :create, :update, :destroy ]
       resources :users, only: [ :index, :create ]
+      resources :tasks, only: [ :index, :show, :create, :update, :destroy ]
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
