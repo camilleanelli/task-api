@@ -24,6 +24,7 @@ module Api
         end
 
         def respond_with(resource, _opts = {})
+          resource.valid?
           if resource.persisted?
             render json: {
               status: { code: 200, message: "Compte cr\u00E9\u00E9 avec succ\u00E8s." },

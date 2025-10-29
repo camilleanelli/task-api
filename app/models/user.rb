@@ -18,9 +18,11 @@ class User < ApplicationRecord
 
   after_create :ensure_or_create_owner
 
-  private
-
   def ensure_or_create_owner
     Owner.find_or_create_by(user: self)
+  end
+
+  def entire_name
+    "#{name} #{last_name}"
   end
 end

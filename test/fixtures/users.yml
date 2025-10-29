@@ -4,8 +4,10 @@ one:
   name: Harry
   last_name: Potter
   email: hp@example.com
+  jti: 123e4567-e89b-12d3-a456-426614174000
 
 two:
   name: Ron
   last_name: Weasley
   email: rw@example.com
+  jti: 123e4567-e89b-12d3-a456-426614174001
