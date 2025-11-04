@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   get "owner/index"
   namespace :api do
     namespace :v1 do
-      resources :projects, only: [ :index, :show, :create, :update, :destroy ]
+      resources :projects, only: [ :index, :show, :create, :update, :destroy ] do
+        resources :tasks, only: [ :index, :show, :create, :update, :destroy ]
+      end
       resources :users, only: [ :index ]
-      resources :tasks, only: [ :index, :show, :create, :update, :destroy ]
       resources :owners, only: [ :index ]
 
       # scope :api, defaults: { format: :json } do

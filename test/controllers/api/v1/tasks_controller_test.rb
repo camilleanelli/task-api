@@ -6,7 +6,7 @@ class Api::V1::TasksControllerTest < ActionDispatch::IntegrationTest
     @project = projects(:project_one)
   end
   test "should get index" do
-    get api_v1_tasks_url
+    get api_v1_project_tasks_url(project_id: @project.id)
     assert_response :success
   end
 

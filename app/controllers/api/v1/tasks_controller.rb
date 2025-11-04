@@ -1,5 +1,6 @@
 class Api::V1::TasksController < ApplicationController
   def index
+    @project = Project.find(params[:project_id])
     @tasks = Task.all
     render json: @tasks
   end
