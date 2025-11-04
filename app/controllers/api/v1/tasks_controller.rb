@@ -1,7 +1,8 @@
 class Api::V1::TasksController < ApplicationController
+  before_action :find_project, only: [ :index, :create, :update, :destroy ]
+
   def index
-    @project = Project.find(params[:project_id])
-    @tasks = Task.all
+    @tasks = @project.tasks.all
     render json: @tasks
   end
 
@@ -11,7 +12,7 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = @project.tasks.new(task_params)
     if @task.save
       render json: @task, status: :created
     else
@@ -20,7 +21,7 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = @project.tasks.find(params[:id])
     if @task.update(task_params)
       render json: @task
     else
@@ -29,14 +30,18 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
+    @task = @project.tasks.find(params[:id])
     @task.destroy
     head :no_content
   end
 
   private
 
+  def find_project
+    @project = Project.find(params[:project_id])
+  end
+
   def task_params
-    params.require(:task).permit(:title, :description, :project_id, :status)
+    params.require(:task).permit(:title, :description, :status)
   end
 end

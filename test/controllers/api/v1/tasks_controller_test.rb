@@ -17,23 +17,23 @@ class Api::V1::TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create a task and return success" do
     assert_difference("Task.count") do
-      post api_v1_tasks_url, params: { task: { title: "New Task", description: "Task description", project_id: @project.id, status: "pending" } }
+      post api_v1_project_tasks_url(project_id: @project.id), params: { task: { title: "New Task", description: "Task description", status: "pending" } }
     end
     assert_response :success
   end
 
   test "should render an error when creating without title" do
-    post api_v1_tasks_url, params: { task: { title: "", description: "Task description", project_id: @project.id, status: "pending" } }
+    post api_v1_project_tasks_url(project_id: @project.id), params: { task: { title: "", description: "Task description", status: "pending" } }
     assert_response :unprocessable_entity
   end
 
   test "should update a task and return success" do
-    patch api_v1_task_url(@existing_task.id)
+    patch api_v1_project_task_url(id: @existing_task.id, project_id: @project.id), params: { task: { title: "Updated Task", description: "Updated description", status: "in_progress" } }
     assert_response :success
   end
 
   test "should destroy a task" do
-    delete api_v1_tasks_url(@existing_task.id)
+    delete api_v1_project_task_url(id: @existing_task.id, project_id: @project.id)
     assert_response :success
   end
 end
