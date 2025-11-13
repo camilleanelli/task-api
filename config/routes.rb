@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       end
       resources :users, only: [ :index, :create ]
       resources :owners, only: [ :index ]
+      post "login", to: "sessions#create"
+      delete "logout", to: "sessions#destroy"
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
