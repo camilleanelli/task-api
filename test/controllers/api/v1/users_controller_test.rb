@@ -14,15 +14,15 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user with valid params" do
     assert_difference("User.count") do
-      post api_v1_users_url, params: { user: { email: "new_user@example.com" } }
+      post api_v1_users_url, params: { user: { email: "new_user@example.com", password: "Mypassword123" } }
     end
     assert_response :created
     json_response = JSON.parse(@response.body)
     assert_includes json_response.values, "new_user@example.com"
   end
 
-  # test "should return error with invalid params" do
-  #   post api_v1_users_url, params: { user: { name: "", last_name: "User", email: "invalid_email" } }
-  #   assert_response :unprocessable_entity
-  # end
+  test "should return error with invalid params" do
+    post api_v1_users_url, params: { user: { email: "invalid_email", password: "toto" } }
+    assert_response :unprocessable_entity
+  end
 end
